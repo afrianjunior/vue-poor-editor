@@ -7,7 +7,7 @@
 </p>
 
 [![NPM](https://nodei.co/npm/vue-poor-editor.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/vue-quill-editor/)
-[![NPM](https://nodei.co/npm-dl/vue-poor-editor.png?months=12&height=3)](https://nodei.co/npm/vue-quill-editor/)
+[![NPM](https://nodei.co/npm-dl/vue-poor-editor.png?months=12)](https://nodei.co/npm/vue-quill-editor/)
 
 # How to use
 
