@@ -102,8 +102,8 @@ var init = function init(Vue) {
         type: Boolean,
         default: true
       },
-      borderless: {
-        title: 'borderless',
+      borderLess: {
+        title: 'borderLess',
         type: Boolean,
         default: true
       },
