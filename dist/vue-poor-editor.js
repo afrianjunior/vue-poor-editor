@@ -76,6 +76,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _htmlExtractor = __webpack_require__(2);
+
+var _htmlExtractor2 = _interopRequireDefault(_htmlExtractor);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var Template = '\n  <div>\n    <div :style="style" id="box-area" contenteditable>\n    </div>\n  </div>\n';
 
 var init = function init(Vue) {
@@ -144,6 +151,9 @@ var init = function init(Vue) {
     },
     methods: {
       eventListener: function eventListener(e) {
+        if (e.which === 13 && !e.shiftKey) {
+          this.submitEvent(this.box.innerHTML);
+        }
         this.$emit('input', this.box.innerHTML);
       },
       format: function format() {
@@ -153,7 +163,7 @@ var init = function init(Vue) {
         this.box = document.getElementById('box-area');
         this.box.innerHTML = value;
         document.execCommand('defaultParagraphSeparator', false, 'p');
-        this.box.addEventListener('keyup', this.eventListener);
+        this.box.addEventListener('keydown', this.eventListener);
         if (this.autoFormat === true) {
           this.pasteEvent();
         }
@@ -163,6 +173,11 @@ var init = function init(Vue) {
           e.preventDefault();
           document.execCommand('insertHTML', false, e.clipboardData.getData('text/plain'));
         });
+      },
+      submitEvent: function submitEvent(html) {
+        if ((0, _htmlExtractor2.default)(html) !== '') {
+          this.$emit('submit:enter', html);
+        }
       }
     }
   });
@@ -191,7 +206,7 @@ var _main2 = _interopRequireDefault(_main);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_main2.default.init.version = "1.0.0";
+_main2.default.init.version = "1.0.3";
 
 exports.default = _main2.default.init;
 
@@ -199,6 +214,21 @@ exports.default = _main2.default.init;
 if (typeof window !== 'undefined' && window.Vue) {
   window.VuePoorEditor = _main2.default.init;
 }
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var regExp = new RegExp(/(<([^>]+)>)/, 'ig');
+
+var extractorHTML = function extractorHTML(html) {
+  return html.replace(regExp, '').trim();
+};
+
+module.exports = extractorHTML;
 
 /***/ })
 /******/ ]);
