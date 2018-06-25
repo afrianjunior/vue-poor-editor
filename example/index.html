@@ -10,11 +10,11 @@
 </head>
 <body>
   <div id="app">
-    <vue-poor-editor title="hell yeah" 
+    <vue-poor-editor
       v-model="message" v-on:input="change" 
       :auto-format="false" 
-      :border-less="false"
-      width="700px"></vue-poor-editor>
+      :border-less="true"
+      width="800px"></vue-poor-editor>
     <div v-html="message"></div>
   </div>
 
