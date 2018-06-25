@@ -1,3 +1,4 @@
+import htmlExtractor from './util/html-extractor'
 const Template = `
   <div>
     <div :style="style" id="box-area" contenteditable>
@@ -69,6 +70,9 @@ const init = (Vue, option = {}) => {
     },
     methods: {
       eventListener: function (e) {
+        if (e.which === 13 && !e.shiftKey) {
+          this.submitEvent(this.box.innerHTML)
+        }
         this.$emit('input', this.box.innerHTML)
       },
       format: function () {
@@ -78,7 +82,7 @@ const init = (Vue, option = {}) => {
         this.box = document.getElementById('box-area')
         this.box.innerHTML = value
         document.execCommand('defaultParagraphSeparator', false, 'p')
-        this.box.addEventListener('keyup', this.eventListener)
+        this.box.addEventListener('keydown', this.eventListener)
         if (this.autoFormat === true) {
           this.pasteEvent()
         }
@@ -88,6 +92,11 @@ const init = (Vue, option = {}) => {
           e.preventDefault()
           document.execCommand('insertHTML', false, e.clipboardData.getData('text/plain'))
         })
+      },
+      submitEvent: function (html) {
+        if (htmlExtractor(html) !== '') {
+          this.$emit('submit', html)
+        }
       }
     }
   })
