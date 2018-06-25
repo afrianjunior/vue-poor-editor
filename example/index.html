@@ -14,6 +14,7 @@
       v-model="message" @input="change" 
       :auto-format="false" 
       :border-less="true"
+      :instant-send="false"
       @submit:enter="submit"
       width="800px"></vue-poor-editor>
     <div v-html="message"></div>
