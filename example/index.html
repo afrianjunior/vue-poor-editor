@@ -11,9 +11,10 @@
 <body>
   <div id="app">
     <vue-poor-editor
-      v-model="message" v-on:input="change" 
+      v-model="message" @input="change" 
       :auto-format="false" 
       :border-less="true"
+      @submit:enter="submit"
       width="800px"></vue-poor-editor>
     <div v-html="message"></div>
   </div>
@@ -28,6 +29,9 @@
       methods: {
         change: function (msg) {
           this.message = msg
+        },
+        submit: function (html) {
+          alert('valid submit!')
         }
       }
     })
