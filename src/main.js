@@ -70,11 +70,12 @@ const init = (Vue, option = {}) => {
     },
     methods: {
       eventListener: function (e) {
-        console.log(e)
-        if (e.which === 13 &&
-            !e.shiftKey &&
-            !e.altKey) {
-          this.submitEvent(this.box.innerHTML)
+        if (this.instantSend === true) {
+          if (e.which === 13 &&
+              !e.shiftKey &&
+              !e.altKey) {
+            this.submitEvent(this.box.innerHTML)
+          }
         }
         this.$emit('input', this.box.innerHTML)
       },
