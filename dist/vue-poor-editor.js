@@ -151,7 +151,8 @@ var init = function init(Vue) {
     },
     methods: {
       eventListener: function eventListener(e) {
-        if (e.which === 13 && !e.shiftKey) {
+        console.log(e);
+        if (e.which === 13 && !e.shiftKey && !e.altKey) {
           this.submitEvent(this.box.innerHTML);
         }
         this.$emit('input', this.box.innerHTML);
