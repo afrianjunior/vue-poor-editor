@@ -95,7 +95,7 @@ const init = (Vue, option = {}) => {
       },
       submitEvent: function (html) {
         if (htmlExtractor(html) !== '') {
-          this.$emit('submit', html)
+          this.$emit('submit:enter', html)
         }
       }
     }
