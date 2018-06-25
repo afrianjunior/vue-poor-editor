@@ -151,9 +151,10 @@ var init = function init(Vue) {
     },
     methods: {
       eventListener: function eventListener(e) {
-        console.log(e);
-        if (e.which === 13 && !e.shiftKey && !e.altKey) {
-          this.submitEvent(this.box.innerHTML);
+        if (this.instantSend === true) {
+          if (e.which === 13 && !e.shiftKey && !e.altKey) {
+            this.submitEvent(this.box.innerHTML);
+          }
         }
         this.$emit('input', this.box.innerHTML);
       },
@@ -207,7 +208,7 @@ var _main2 = _interopRequireDefault(_main);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_main2.default.init.version = "1.0.3";
+_main2.default.init.version = "1.0.4";
 
 exports.default = _main2.default.init;
 
