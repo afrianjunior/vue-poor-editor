@@ -27,8 +27,8 @@ const init = (Vue, option = {}) => {
         type: Boolean,
         default: true
       },
-      borderless: {
-        title: 'borderless',
+      borderLess: {
+        title: 'borderLess',
         type: Boolean,
         default: true
       },
