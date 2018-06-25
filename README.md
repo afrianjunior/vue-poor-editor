@@ -24,7 +24,7 @@ index.html
 <section>
   <div id="app">
     <vue-poor-editor 
-      :value="html" :input="editorListener"></vue-poor-editor>
+      v-model="html" @input="editorListener" @submit:enter="sendContent"></vue-poor-editor>
   </div>
 </section>
 ```
@@ -32,13 +32,18 @@ index.html
 ```js
 Vue.use('VuePoorEditor');
 new Vue({
-  el: 'app',
+  el: '#app',
   data: {
     html: 'write something'
   },
   methods: {
     editorListener: function (html) {
       this.html = html
+    },
+    sendContent: function (html) {
+      axios.post('url', {
+        data: html
+      })
     }
   }
 })
@@ -55,7 +60,7 @@ remove border box editor
 
 ```html
   <vue-poor-editor 
-    :value="html" :input="editorListener"
+    v-model="html" @input="editorListener"
     :border-less="true"></vue-poor-editor>
 ```
 
@@ -68,7 +73,7 @@ auto format when you paste text from clipboard
 
 ```html
   <vue-poor-editor 
-    :value="html" :input="editorListener"
+    v-model="html" @input="editorListener"
     :auto-format="true"></vue-poor-editor>
 ```
 
@@ -81,7 +86,7 @@ resize height box editor
 
 ```html
   <vue-poor-editor 
-    :value="html" :input="editorListener"
+    v-model="html" @input="editorListener"
     min-height="400px"></vue-poor-editor>
 ```
 
@@ -94,6 +99,26 @@ resize width box editor
 
 ```html
   <vue-poor-editor 
-    :value="html" :input="editorListener"
+    v-model="html" @input="editorListener"
     witdh="700px"></vue-poor-editor>
+```
+
+## Event
+
+* Input
+
+listen change html content
+
+```html
+  <vue-poor-editor 
+    v-model="html" @input="editorListener"></vue-poor-editor>
+```
+
+* Submit:enter
+
+get content when entered (which 13 without shift key)
+
+```html
+  <vue-poor-editor 
+    v-model="html" @submit:enter="sendContent"></vue-poor-editor>
 ```
