@@ -64,6 +64,19 @@ remove border box editor
     :border-less="true"></vue-poor-editor>
 ```
 
+* instantSend
+
+type `Boolean` <br>
+default `true`
+
+activated submit on enter event
+
+```html
+  <vue-poor-editor 
+    v-model="html" @input="editorListener"
+    :instant-send="true"></vue-poor-editor>
+```
+
 * autoFormat
 
 type `Boolean` <br>
@@ -117,6 +130,8 @@ listen change html content
 * Submit:enter
 
 get content when entered (which 13 without shift key)
+
+this event active when instantSend option is `true`
 
 ```html
   <vue-poor-editor 
