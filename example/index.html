@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Browser Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js" ></script>
+  <script src="../dist/vue-poor-editor.js" ></script>
+</head>
+<body>
+  <div id="app">
+    <vue-poor-editor title="hell yeah" 
+      v-model="message" v-on:input="change" 
+      :auto-format="false" 
+      :border-less="false"
+      width="700px"></vue-poor-editor>
+    <div v-html="message"></div>
+  </div>
+
+  <script>
+    Vue.use(VuePoorEditor)
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Writing clean code is what you must know and do in order to call yourself a professional developer. There is no reasonable excuse for doing anything less than your best.'
+      },
+      methods: {
+        change: function (msg) {
+          this.message = msg
+        }
+      }
+    })
+  </script>
+</body>
+</html>

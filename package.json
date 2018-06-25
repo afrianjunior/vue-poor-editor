@@ -1,0 +1,48 @@
+{
+  "name": "vue-poor-editor",
+  "version": "1.0.0",
+  "description": "Simple WYSIWYG HTML Editor. poor feature, but rich benefit!",
+  "main": "dist/bundle.js",
+  "unpkg": "dist/bundle.js",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue editor",
+    "WYSIWYG",
+    "WYSIWYG editor",
+    "WYSIWYG HTML editor"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "bundleDependencies": false,
+  "deprecated": false,
+  "author": {
+    "name": "Afrian Junior"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afrianjunior/vue-poor-editor.git"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^7.2.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.0",
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-loader": "^1.7.0",
+    "eslint-plugin-html": "^2.0.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1",
+    "q": "^1.5.0",
+    "webpack": "^2.3.1"
+  },
+  "scripts": {
+    "build": "rm -fr dist && webpack && uglifyjs --compress --mangle --output dist/vue-poor-editor.min.js -- dist/vue-poor-editor.js",
+    "dev": "webpack --colors --watch"
+  }
+}
