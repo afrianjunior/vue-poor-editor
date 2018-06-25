@@ -151,12 +151,14 @@ var init = function init(Vue) {
     },
     methods: {
       eventListener: function eventListener(e) {
+        this.$emit('input', this.box.innerHTML);
+      },
+      enterListener: function enterListener(e) {
         if (this.instantSend === true) {
           if (e.which === 13 && !e.shiftKey && !e.altKey) {
             this.submitEvent(this.box.innerHTML);
           }
         }
-        this.$emit('input', this.box.innerHTML);
       },
       format: function format() {
         document.execCommand('removeFormat', false);
@@ -165,7 +167,8 @@ var init = function init(Vue) {
         this.box = document.getElementById('box-area');
         this.box.innerHTML = value;
         document.execCommand('defaultParagraphSeparator', false, 'p');
-        this.box.addEventListener('keydown', this.eventListener);
+        this.box.addEventListener('keyup', this.eventListener);
+        this.box.addEventListener('keydown', this.enterListener);
         if (this.autoFormat === true) {
           this.pasteEvent();
         }
@@ -208,7 +211,7 @@ var _main2 = _interopRequireDefault(_main);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_main2.default.init.version = "1.0.4";
+_main2.default.init.version = "1.0.5";
 
 exports.default = _main2.default.init;
 
