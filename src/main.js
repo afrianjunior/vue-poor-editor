@@ -46,6 +46,13 @@ const init = (Vue, option = {}) => {
         default: '100%'
       }
     },
+    watch: {
+      value: function (val) {
+        if (val === '' && this.id !== null) {
+          this.box.innerHTML = val
+        }
+      }
+    },
     data: function () {
       return {
         box: null,
