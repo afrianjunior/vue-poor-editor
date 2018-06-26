@@ -81,13 +81,15 @@ var _htmlExtractor = __webpack_require__(2);
 
 var _htmlExtractor2 = _interopRequireDefault(_htmlExtractor);
 
+var _ranWords = __webpack_require__(3);
+
+var _ranWords2 = _interopRequireDefault(_ranWords);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Template = '\n  <div>\n    <div :style="style" id="box-area" contenteditable>\n    </div>\n  </div>\n';
+var Template = '\n  <div>\n    <div :style="style" :id="id" contenteditable>\n    </div>\n  </div>\n';
 
 var init = function init(Vue) {
-  var option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
   return Vue.component('vue-poor-editor', {
     model: {
       prop: 'value',
@@ -125,10 +127,17 @@ var init = function init(Vue) {
         default: '100%'
       }
     },
-    template: Template,
+    watch: {
+      value: function value(val) {
+        if (val === '' && this.id !== null) {
+          this.box.innerHTML = val;
+        }
+      }
+    },
     data: function data() {
       return {
         box: null,
+        id: null,
         style: {
           border: '1px solid #b2bec3',
           padding: '4px',
@@ -140,6 +149,10 @@ var init = function init(Vue) {
           'width': this.width
         }
       };
+    },
+    template: Template,
+    beforeMount: function beforeMount() {
+      this.id = (0, _ranWords2.default)(6);
     },
     mounted: function mounted() {
       if (typeof document !== 'undefined') {
@@ -164,7 +177,7 @@ var init = function init(Vue) {
         document.execCommand('removeFormat', false);
       },
       listener: function listener(value) {
-        this.box = document.getElementById('box-area');
+        this.box = document.getElementById(this.id);
         this.box.innerHTML = value;
         document.execCommand('defaultParagraphSeparator', false, 'p');
         this.box.addEventListener('keyup', this.eventListener);
@@ -211,7 +224,7 @@ var _main2 = _interopRequireDefault(_main);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_main2.default.init.version = "1.0.5";
+_main2.default.init.version = "1.0.6";
 
 exports.default = _main2.default.init;
 
@@ -234,6 +247,26 @@ var extractorHTML = function extractorHTML(html) {
 };
 
 module.exports = extractorHTML;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var randomWord = function randomWord(ln) {
+  var words = ['a', 'X', '4', 't', 'z', 'o', 'Y', 'm', 'L', 'q', 'n', 'M', 'c', 'k', 'Z'];
+  var ranWord = ['vpe-'];
+  var ranNum = function ranNum(words) {
+    return Math.floor(Math.random() * words.length);
+  };
+  for (var loop = 0; loop < ln; loop++) {
+    ranWord.push(words[ranNum(words)]);
+  }
+  return ranWord.join('');
+};
+module.exports = randomWord;
 
 /***/ })
 /******/ ]);
