@@ -1,7 +1,9 @@
 import htmlExtractor from './util/html-extractor'
+import ranWord from './util/ran-words'
+
 const Template = `
   <div>
-    <div :style="style" id="box-area" contenteditable>
+    <div :style="style" :id="id" contenteditable>
     </div>
   </div>
 `
@@ -44,10 +46,10 @@ const init = (Vue, option = {}) => {
         default: '100%'
       }
     },
-    template: Template,
     data: function () {
       return {
         box: null,
+        id: null,
         style: {
           border: '1px solid #b2bec3',
           padding: '4px',
@@ -59,6 +61,10 @@ const init = (Vue, option = {}) => {
           'width': this.width
         }
       }
+    },
+    template: Template,
+    beforeMount: function () {
+      this.id = ranWord(6)
     },
     mounted: function () {
       if (typeof document !== 'undefined') {
@@ -85,7 +91,7 @@ const init = (Vue, option = {}) => {
         document.execCommand('removeFormat', false)
       },
       listener: function (value) {
-        this.box = document.getElementById('box-area')
+        this.box = document.getElementById(this.id)
         this.box.innerHTML = value
         document.execCommand('defaultParagraphSeparator', false, 'p')
         this.box.addEventListener('keyup', this.eventListener)
