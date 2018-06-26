@@ -8,7 +8,7 @@ const Template = `
   </div>
 `
 
-const init = (Vue, option = {}) => {
+const init = (Vue) => {
   return Vue.component('vue-poor-editor', {
     model: {
       prop: 'value',
