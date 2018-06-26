@@ -18,6 +18,13 @@
       @submit:enter="submit"
       width="800px"></vue-poor-editor>
     <div v-html="message"></div>
+    <vue-poor-editor
+      v-model="messageTwo" @input="changeTwo" 
+      :auto-format="false" 
+      :border-less="true"
+      :instant-send="false"
+      width="800px"></vue-poor-editor>
+    <div v-html="messageTwo"></div>
   </div>
 
   <script>
@@ -25,11 +32,15 @@
     new Vue({
       el: '#app',
       data: {
-        message: 'Writing clean code is what you must know and do in order to call yourself a professional developer. There is no reasonable excuse for doing anything less than your best.'
+        message: 'Writing clean code is what you must know and do in order to call yourself a professional developer. There is no reasonable excuse for doing anything less than your best.',
+        messageTwo: 'message two'
       },
       methods: {
         change: function (msg) {
           this.message = msg
+        },
+        changeTwo: function (msg) {
+          this.messageTwo = msg
         },
         submit: function (html) {
           alert('valid submit!')
