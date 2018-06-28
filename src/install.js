@@ -1,9 +1,10 @@
-import VuePoorEditor from './main.js'
+import VuePoorEditor from './main.vue'
 
-VuePoorEditor.init.version = process.env.__VERSION__
+console.log(VuePoorEditor)
+export default function install (Vue) {
+  Vue.component('VuePoorEditor', VuePoorEditor)
+}
 
-export default VuePoorEditor.init
-
-if (typeof window !== 'undefined' && window.Vue) {
-  window.VuePoorEditor = VuePoorEditor.init
+if (typeof window !== 'undefined' && typeof window.Vue !== 'undefined') {
+  window.Vue.use(install)
 }
