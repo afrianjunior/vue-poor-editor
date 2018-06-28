@@ -30,7 +30,6 @@ index.html
 ```
 
 ```js
-Vue.use('VuePoorEditor');
 new Vue({
   el: '#app',
   data: {
