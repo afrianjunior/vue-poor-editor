@@ -1,6 +1,6 @@
 {
   "name": "vue-poor-editor",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Simple WYSIWYG HTML Editor. poor feature, but rich benefit!",
   "main": "dist/bundle.js",
   "unpkg": "dist/bundle.js",
@@ -41,6 +41,8 @@
     "eslint-plugin-standard": "^2.1.1",
     "mocha": "^5.2.0",
     "q": "^1.5.0",
+    "vue-loader": "^15.2.4",
+    "vue-template-compiler": "^2.5.16",
     "webpack": "^2.3.1"
   },
   "scripts": {
