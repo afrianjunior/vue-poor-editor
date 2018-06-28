@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 console.log('v: ' + require('./package.json').version)
 
@@ -17,6 +18,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
         enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
@@ -33,10 +38,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        '__VERSION__': JSON.stringify(require('./package.json').version)
-      }
-    })
+    new VueLoaderPlugin()
   ]
 }
